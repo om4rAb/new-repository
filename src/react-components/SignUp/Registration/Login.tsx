@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./LoginStyle.css"
 import TopPage from "../../Top-and-Bottom-comp/TopPage.tsx";
 import BottomPage from "../../Top-and-Bottom-comp/BottomPage.tsx";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FieldValues, useForm } from 'react-hook-form';
 import axios from 'axios';
 import ErrorMessageComp from '../../ErrorComponents/ErrorMessagePopup.tsx';
@@ -31,14 +31,11 @@ export default function Login() {
     //
     try {
       
-      const URL = 'https://dummyjson.com/products/add'
+      const URL = 'https://dummyjson.com/products:ADD'
 
       const response= await axios.post(URL, data )
-      
-      // navigate the user to his profile or smt like that
-      navigate("")
+  
       // will clear the inputs in case submission went well
-      
       reset()
 
     } 
@@ -47,6 +44,8 @@ export default function Login() {
       setMessage(true)
 
     } 
+
+
       
   }
 
@@ -69,15 +68,15 @@ export default function Login() {
             <form  onSubmit={handleSubmit(HandleForm)} className='form'> 
               <label htmlFor="email"> Email</label> 
               <input type="email"  id='email'  placeholder='Email' {...register("email" , {required:"Email required"})} />
-              {errors.email && <p className='errMess'>{errors.email?.message}</p>}
+              {errors.email && <p className='errMess'>{errors.email.message}</p>}
 
               <label className='pass-label' htmlFor="passw">Password</label>
               <input type="password" id='passw'   placeholder='Password'{...register("password" , {required:"Password required"})} />
-              {errors.password && <p className='errMess'>{errors.password?.message}</p>}
+              {errors.password && <p className='errMess'>{errors.password.message}</p>}
 
               <label onClick={RedirectTo} className='forgot-pass-btn'>Forgot password?</label>
 
-              <input disabled={isSubmitting} type="submit" id='login'value={isSubmitting? "HOLD ON..." : "LOGIN"} className='login-btn' />
+              <input disabled={isSubmitting} type="submit" id='login'value="LOGIN" className='login-btn' />
               
               <input onClick={RedirectTo} type="button" value="New user? SIGN UP" id='signup' className='Signup-btn' />  
             </form>
