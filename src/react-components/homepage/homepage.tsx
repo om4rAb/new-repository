@@ -1,8 +1,7 @@
 import React from "react";
 import "./homepage.css";
 import Carousel from "./carousel.tsx";
-import Footer from "../footer/footer.tsx";
-import { HeaderNav } from "../header/header.tsx";
+
 interface CardProps {
   photosrc: any;
   subtitle: string;
@@ -30,7 +29,6 @@ const Card: React.FC<CardProps> = ({
 const Homepage = () => {
   return (
     <main className="homepage">
-      <HeaderNav />
 
       <section className="homepage--welcome">
         <img src="./images/rectangle-1690.png" alt="wine table" />
@@ -79,7 +77,6 @@ const Homepage = () => {
           <button className="homepage--book-button">Book a table</button>
         </div>
       </section>
-      <Footer/>
     </main>
   );
 };

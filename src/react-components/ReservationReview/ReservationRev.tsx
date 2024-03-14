@@ -1,42 +1,48 @@
 import React from "react";
-import ErrorBoundary from "../ErrorComponents/ErrorMessagePopup.tsx";
+
+// import ErrorBoundary from "../ErrorComponents/ErrorBoundary.tsx";
+// import { ReservationDetails } from "./Types";
 import { SpinnerLoading } from "../utils/SpinnerLoading.tsx";
 import "./ReservationRevStyle.css";
-import TopPage from "../Top-and-Bottom-comp/TopPage.tsx";
 import BottomPage from "../Top-and-Bottom-comp/BottomPage.tsx";
-import {  useNavigate } from "react-router-dom";
-import { ReservationRevDetails } from "../../Models/ReservationRevClass.ts";
+import TopPage from "../Top-and-Bottom-comp/TopPage.tsx";
+// import TopPage from "../Top-and-Bottom-comp/TopPage.tsx";
+// import BottomPage from "../Top-and-Bottom-comp/BottomPage.tsx";
+// import { Link } from "react-router-dom";
 
 // NOTE: IN CASE YOU WANNA SEE HOW THIS COMPONENT LOOKS LIKE
 // IMPORT THIS COMP IN index.tsx and run it
 
 export default function ReservationRev() {
 
+
   const [ReservDetails, setReservDetails] = React.useState<ReservationRevDetails | null>(null);
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [Error, setError] = React.useState();
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
 
   // Redirect user to the Previous page
   const HeadToPreviousPage = (): void => {
 
-    Navigate("/guest-reserv")
+    navigate("/guest-reserv")
   };
 
   // Redirect user to the Payment page
   const NextPage = (): void => {
 
-    Navigate("/payments")
+    navigate("/payments")
   };
 
   React.useEffect(() => {
     const FetchData = async () => {
       try {
         setIsLoading(true);
-        const data = await fetch("https://jsonplaceholder.typicode.com/users"); // this api just to test
+        // const data = await fetch("https://jsonplaceholder.typicode.com/users");
+        // this api just to test
 
         // Convert data to json
-        const Data_as_json: {} = await data.json();
+        // const Data_as_json: {} = await data.json();
 
         // setReservDetails(Data_as_json)
         
@@ -51,9 +57,9 @@ export default function ReservationRev() {
   }, []);
 
   // this code will work in case smt happened with fetching data
-  if (Error) {
-    return <ErrorBoundary />;
-  }
+  // if (Error) {
+  //   return <Erro />;
+  // }
 
   // this will show in case data took a long period of time to be fetched
   if (isLoading) {
@@ -88,7 +94,7 @@ export default function ReservationRev() {
               <b>Reservation Review</b>
             </h2>
 
-            <span>Reservation informations</span>
+            <span>Reservation Information</span>
             <div className="infos-box first-box">
               <div className="label-box">
                 <p> Date </p>
@@ -104,11 +110,11 @@ export default function ReservationRev() {
               </div>
             </div>
 
-            <span>Guest informations</span>
+            <span>Guest Information</span>
             <div className="infos-box second-box">
               <div className="label-box">
-                <p> Name </p>
-                <p>email </p>
+                <p>Name </p>
+                <p>Email </p>
                 <p>Contact Number </p>
               </div>
               <div className="data-box">
@@ -118,7 +124,7 @@ export default function ReservationRev() {
               </div>
             </div>
 
-            <span>Payment informations</span>
+            <span>Payment Information</span>
             <div className="infos-box third-box">
               <div className="label-box">
                 <p> Card Number </p>
